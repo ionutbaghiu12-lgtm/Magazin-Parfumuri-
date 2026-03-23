@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplicație Gestiune</title>
+</head>
+<body>
+
+    <header>
+        <h1>Sistem Gestiune Inventar</h1>
+        <h2>Adăugare și vizualizare produse</h2>
+        <p>Introduceți datele în formularul de mai jos. <strong>Toate câmpurile vizibile</strong> trebuie verificate cu <b>mare atenție</b>.</p>
+        <img src="logo.png" alt="Logo Aplicație" width="200" height="100" title="Logo Sistem Gestiune">
+    </header>
+
+    <form action="/submit" method="POST">
+        <fieldset>
+            <legend>Detalii Produs Nou</legend>
+            
+            <label>Nume Produs:</label>
+            <input type="text" name="nume" maxlength="100" size="40" value="Produs Standard"><br><br>
+            
+            <label>Cantitate:</label>
+            <input type="number" name="cantitate" max="1000" step="10"><br><br>
+            
+            <label>Categorie:</label>
+            <select name="categorie" multiple>
+                <option value="it" selected>Echipamente IT</option>
+                <option value="birotica">Birotică</option>
+                <option value="mobilier">Mobilier</option>
+                <option value="diverse">Diverse</option>
+            </select><br><br>
+            
+            <label>Proprietăți:</label>
+            <input type="checkbox" name="activ" checked> Activ
+            <input type="checkbox" name="promo" disabled> În promoție<br><br>
+            
+            <label>Observații:</label><br>
+            <textarea name="obs" cols="50" rows="4" readonly>Informații prestabilite care nu pot fi modificate.</textarea><br><br>
+            
+            <input type="submit" value="Trimite">
+            <input type="reset" value="Resetează">
+        </fieldset>
+    </form>
+
+    <br>
+
+    <table border="1" width="80%" bgcolor="#f9f9f9">
+        <tr bgcolor="#cccccc" height="50">
+            <th align="center" valign="middle">ID</th>
+            <th align="left" valign="top">Nume Produs</th>
+            <th align="right" valign="bottom">Preț</th>
+        </tr>
+        <tr>
+            <td align="center">1</td>
+            <td align="left">Laptop</td>
+            <td align="right">3500</td>
+        </tr>
+        <tr>
+            <td align="center">2</td>
+            <td align="left">Mouse</td>
+            <td align="right">150</td>
+        </tr>
+        <tr>
+            <td align="center">3</td>
+            <td align="left">Tastatură</td>
+            <td align="right">250</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right" bgcolor="#e0e0e0">Total Valoare:</td>
+            <td align="right" bgcolor="#e0e0e0">3900</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <div>
+        <center>Navigare Secundară</center>
+        
+        <ol start="10">
+            <li>Verificați stocul existent</li>
+            <li>Adăugați produsul în formular</li>
+            <li>Salvați modificările</li>
+        </ol>
+        
+        <ul>
+            <li>Echipamente IT</li>
+            <li>Birotică</li>
+            <li>Mobilier</li>
+        </ul>
+        
+        <span>Contact: suport@aplicatie.ro</span><br>
+        
+        <a href="https://example.com" target="_blank" name="link_extern">Documentație Externă</a><br>
+        <a href="#top" target="_self" name="link_intern">Înapoi sus</a>
+    </div>
+
+    <script>
+        var numeMagazin = "GestiuneMag";
+        let numarProduse = 1250;
+        const versiuneAplicatie = "1.0.5";
+
+        alert("Aplicația pentru: " + numeMagazin);
+        console.log("Numărul total de produse în sistem: " + numarProduse);
+        document.write("<br><b>Versiune aplicație:</b> " + versiuneAplicatie);
+
+        function calculeazaTotal(pret, cantitate) {
+            return pret * cantitate;
+        }
+
+        const aplicaDiscount = function(total, procent) {
+            return total - (total * (procent / 100));
+        };
+
+        const formatPret = (suma) => suma.toFixed(2) + " RON";
+
+        let total = calculeazaTotal(25.5, 3);
+        let totalRedus = aplicaDiscount(total, 10);
+        let rezultatFinal = formatPret(totalRedus);
+
+        console.log("Rezultatul final cu reducere este: " + rezultatFinal);
+    </script>
+</body>
+</html>

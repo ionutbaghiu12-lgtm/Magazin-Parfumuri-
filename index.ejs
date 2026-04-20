@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazin Parfumuri</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+
+    <header style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ccc; padding-bottom: 10px;">
+        <h1>Magazin de Parfumuri</h1>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <span style="color: #666;">Bun venit, <%= user.name %>!</span>
+            <a href="/cos" style="font-size: 1.2em; text-decoration: none; background-color: #007bff; color: white; padding: 10px 15px; border-radius: 5px;">
+                🛒 Coșul meu (<%= nrProduseCos %>)
+            </a>
+            <a href="/logout" style="text-decoration: none; background-color: #dc3545; color: white; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
+                Logout
+            </a>
+        </div>
+    </header>
+
+    <h2>Produse disponibile</h2>
+    
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <% parfumuri.forEach(function(parfum) { %>
+            <div style="border: 1px solid #ddd; padding: 15px; width: 200px; border-radius: 8px; text-align: center;">
+                <h3><%= parfum.nume %></h3>
+                <p style="color: gray;"><%= parfum.categorie %></p>
+                <p><strong><%= parfum.pret %> RON</strong></p>
+                
+                <form action="/adauga" method="POST">
+                    <input type="hidden" name="id" value="<%= parfum.id %>">
+                    <button type="submit" style="background-color: #28a745; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; border-radius: 4px;">
+                        Adaugă în coș
+                    </button>
+                </form>
+            </div>
+        <% }); %>
+    </div>
+
+</body>
+</html>

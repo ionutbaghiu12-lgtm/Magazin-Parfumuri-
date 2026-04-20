@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Înregistrare - Magazin Parfumuri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .form-toggle {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .form-toggle a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .form-toggle a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .success-message {
+            color: #388e3c;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            background: #e8f5e9;
+            border-radius: 5px;
+        }
+
+        .register-btn-footer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            transition: all 0.3s;
+        }
+
+        .register-btn-footer:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .form-toggle.hidden ~ .register-btn-footer {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <!-- Formularul de Login -->
+            <div id="loginForm">
+                <h1>Autentificare</h1>
+                
+                <% if (mesaj === 'inregistrare_succes') { %>
+                    <div class="success-message">✓ Înregistrare reușită! Te poți loga acum.</div>
+                <% } %>
+
+                <% if (mesaj === 'Acces interzis! Te rugăm să te loghezi.') { %>
+                    <div class="error-message"><%= mesaj %></div>
+                <% } %>
+
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="Introdu emailul tău">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Parolă</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Introdu parola">
+                    </div>
+
+                    <button type="submit">Autentificare</button>
+                </form>
+
+                <div class="form-toggle">
+                    Nu ai cont? <a onclick="toggleForms()">Înregistrează-te</a>
+                </div>
+            </div>
+
+            <!-- Formularul de Înregistrare -->
+            <div id="registerForm" class="hidden">
+                <h1>Înregistrare</h1>
+
+                <form action="/register" method="POST">
+                    <div class="form-group">
+                        <label for="registerName">Nume Complet</label>
+                        <input type="text" id="registerName" name="name" required placeholder="Introdu numele complet">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" name="email" required placeholder="Introdu emailul">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerPassword">Parolă</label>
+                        <input type="password" id="registerPassword" name="password" required placeholder="Alege o parolă">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirmă Parola</label>
+                        <input type="password" id="registerConfirmPassword" name="confirmPassword" required placeholder="Confirmă parola">
+                    </div>
+
+                    <button type="submit">Înregistrare</button>
+                </form>
+
+                <div class="form-toggle">
+                    Ai deja cont? <a onclick="toggleForms()">Autentificare</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buton Înregistrare în dreapta jos (vizibil pe formularul de login) -->
+    <button class="register-btn-footer" onclick="toggleForms()">+ Înregistrare</button>
+
+    <script>
+        function toggleForms() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            
+            loginForm.classList.toggle('hidden');
+            registerForm.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

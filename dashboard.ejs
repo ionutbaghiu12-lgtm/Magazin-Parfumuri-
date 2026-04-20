@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestiune Parfumuri - Zona Protejată</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+
+    <header>
+        <h1>Zonă Privată: Gestiune Stoc Parfumuri</h1>
+        <h2>Bun venit, <%= user %>! 👋</h2>
+        <a href="/logout" style="color: red;">Deconectare</a>
+    </header>
+
+    <hr>
+
+    <h3>Lista Parfumuri în Stoc</h3>
+    <table border="1" width="80%" cellpadding="8" style="border-collapse: collapse;">
+        <tr bgcolor="#cccccc">
+            <th align="center">ID</th>
+            <th align="left">Nume Parfum</th>
+            <th align="center">Categorie</th>
+            <th align="right">Preț (RON)</th>
+        </tr>
+        
+        <% let total = 0; %>
+        <% parfumuri.forEach(function(parfum) { 
+            total += parfum.pret; 
+        %>
+            <tr>
+                <td align="center"><%= parfum.id %></td>
+                <td><%= parfum.nume %></td>
+                <td align="center"><%= parfum.categorie %></td>
+                <td align="right"><%= parfum.pret %></td>
+            </tr>
+        <% }); %>
+        
+        <tr>
+            <td colspan="3" align="right" bgcolor="#e0e0e0"><strong>Total Valoare Stoc:</strong></td>
+            <td align="right" bgcolor="#e0e0e0"><strong><%= total %> RON</strong></td>
+        </tr>
+    </table>
+
+</body>
+</html>

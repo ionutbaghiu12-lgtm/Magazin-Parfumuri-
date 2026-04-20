@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Coș de Cumpărături</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+
+    <h1>🛒 Coșul tău de cumpărături</h1>
+    <a href="/" style="text-decoration: none; color: blue;">&larr; Înapoi la magazin</a>
+    
+    <br><br>
+
+    <% if (cos.length === 0) { %>
+        <p>Coșul tău este gol.</p>
+    <% } else { %>
+        <table border="1" width="100%" cellpadding="10" style="border-collapse: collapse;">
+            <tr bgcolor="#f2f2f2">
+                <th align="left">Produs</th>
+                <th align="center">Cantitate</th>
+                <th align="right">Preț Unitar</th>
+                <th align="right">Subtotal</th>
+            </tr>
+            
+            <% cos.forEach(function(item) { %>
+                <tr>
+                    <td><%= item.nume %></td>
+                    <td align="center"><%= item.cantitate %></td>
+                    <td align="right"><%= item.pret %> RON</td>
+                    <td align="right"><strong><%= item.pret * item.cantitate %> RON</strong></td>
+                </tr>
+            <% }); %>
+            
+            <tr>
+                <td colspan="3" align="right" bgcolor="#e0e0e0"><strong>Total de plată:</strong></td>
+                <td align="right" bgcolor="#e0e0e0" style="color: red; font-size: 1.2em;"><strong><%= total %> RON</strong></td>
+            </tr>
+        </table>
+        
+        <br>
+        <div style="display: flex; justify-content: space-between;">
+            <a href="/goleste-cos">
+                <button style="background-color: #dc3545; color: white; border: none; padding: 10px 15px; cursor: pointer;">Golește coșul</button>
+            </a>
+            <button style="background-color: #ffc107; color: black; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer;">Finalizează comanda</button>
+        </div>
+    <% } %>
+
+</body>
+</html>

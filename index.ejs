@@ -3,13 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Magazin Parfumuri</title>
+    <style>
+        <% if (tema === 'dark') { %>
+            body {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                font-family: Arial, sans-serif;
+                padding: 20px;
+            }
+            header {
+                border-bottom-color: #444;
+            }
+            h1, h2, h3 {
+                color: #f0f0f0;
+            }
+            div[style*="border: 1px solid"] {
+                background-color: #2d2d2d;
+                border-color: #444 !important;
+            }
+            span[style*="color: gray"] {
+                color: #b0b0b0 !important;
+            }
+            strong {
+                color: #ffd700;
+            }
+        <% } else { %>
+            body {
+                background-color: #ffffff;
+                color: #333;
+                font-family: Arial, sans-serif;
+                padding: 20px;
+            }
+        <% } %>
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; padding: 20px;">
+<body>
 
     <header style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ccc; padding-bottom: 10px;">
         <h1>Magazin de Parfumuri</h1>
         <div style="display: flex; gap: 15px; align-items: center;">
             <span style="color: #666;">Bun venit, <%= user.name %>!</span>
+            <a href="/schimba-tema" style="font-size: 0.9em; text-decoration: none; background-color: #6c757d; color: white; padding: 8px 12px; border-radius: 5px;">
+                <% if (tema === 'dark') { %>
+                    ☀️ Light
+                <% } else { %>
+                    🌙 Dark
+                <% } %>
+            </a>
             <a href="/cos" style="font-size: 1.2em; text-decoration: none; background-color: #007bff; color: white; padding: 10px 15px; border-radius: 5px;">
                 🛒 Coșul meu (<%= nrProduseCos %>)
             </a>

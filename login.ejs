@@ -11,24 +11,137 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+        <% if (tema === 'dark') { %>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
 
-        .container {
-            width: 100%;
-            max-width: 450px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
+            .container {
+                width: 100%;
+                max-width: 450px;
+                background: #0f3460;
+                border-radius: 10px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+                overflow: hidden;
+            }
+
+            h1 {
+                color: #e0e0e0;
+            }
+
+            label {
+                color: #b0b0b0;
+            }
+
+            input {
+                background: #1a1a2e;
+                color: #e0e0e0;
+                border-color: #444;
+            }
+
+            input:focus {
+                border-color: #667eea;
+                box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+            }
+
+            .form-toggle {
+                color: #b0b0b0;
+            }
+
+            .form-toggle a {
+                color: #667eea;
+            }
+
+            .error-message {
+                color: #ff6b6b;
+            }
+
+            .success-message {
+                background: #1b3d3d;
+                color: #81c784;
+                border: 1px solid #388e3c;
+            }
+
+            .register-btn-footer {
+                background: #667eea;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            }
+
+            .register-btn-footer:hover {
+                background: #764ba2;
+            }
+        <% } else { %>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 450px;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+            }
+
+            h1 {
+                color: #333;
+            }
+
+            label {
+                color: #555;
+            }
+
+            input {
+                background: white;
+                color: #333;
+                border-color: #ddd;
+            }
+
+            input:focus {
+                border-color: #667eea;
+                box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+            }
+
+            .form-toggle {
+                color: #666;
+            }
+
+            .form-toggle a {
+                color: #667eea;
+            }
+
+            .error-message {
+                color: #d32f2f;
+            }
+
+            .success-message {
+                background: #e8f5e9;
+                color: #388e3c;
+                border: 1px solid #388e3c;
+            }
+
+            .register-btn-footer {
+                background: #667eea;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .register-btn-footer:hover {
+                background: #764ba2;
+            }
+        <% } %>
 
         .form-container {
             padding: 40px;
@@ -36,7 +149,6 @@
 
         h1 {
             text-align: center;
-            color: #333;
             margin-bottom: 30px;
             font-size: 28px;
         }
@@ -48,7 +160,6 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
             font-weight: 500;
         }
 
@@ -63,8 +174,6 @@
 
         input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
         }
 
         button {
@@ -92,11 +201,9 @@
         .form-toggle {
             text-align: center;
             margin-top: 20px;
-            color: #666;
         }
 
         .form-toggle a {
-            color: #667eea;
             text-decoration: none;
             font-weight: 600;
             cursor: pointer;
@@ -111,19 +218,16 @@
         }
 
         .error-message {
-            color: #d32f2f;
             font-size: 14px;
             margin-top: 5px;
             text-align: center;
         }
 
         .success-message {
-            color: #388e3c;
             font-size: 14px;
             margin-bottom: 20px;
             text-align: center;
             padding: 10px;
-            background: #e8f5e9;
             border-radius: 5px;
         }
 
@@ -132,19 +236,16 @@
             bottom: 20px;
             right: 20px;
             padding: 10px 20px;
-            background: #667eea;
             color: white;
             border: none;
             border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             display: none;
             transition: all 0.3s;
         }
 
         .register-btn-footer:hover {
-            background: #764ba2;
             transform: scale(1.05);
         }
 
